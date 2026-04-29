@@ -19,6 +19,9 @@ const INITIAL_DRAFT: ListingDraft = {
   shortDesc: '',
 };
 
+const NAME_MAX_LENGTH = 40;
+const DESCRIPTION_MAX_LENGTH = 255;
+
 export default function CreateListingScreen() {
   const [listing, setListing] = useState<ListingDraft>(INITIAL_DRAFT);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -38,8 +41,8 @@ export default function CreateListingScreen() {
           value={listing.name}
           onChangeText={(value) => setListing((prev) => ({ ...prev, name: value }))}
           placeholder="Enter name"
+          maxLength={NAME_MAX_LENGTH}
           returnKeyType="done"
-          blurOnSubmit
           onSubmitEditing={Keyboard.dismiss}
           style={styles.input}
         />
@@ -77,10 +80,10 @@ export default function CreateListingScreen() {
           value={listing.shortDesc}
           onChangeText={(value) => setListing((prev) => ({ ...prev, shortDesc: value }))}
           placeholder="Enter short description"
+          maxLength={DESCRIPTION_MAX_LENGTH}
           multiline
           numberOfLines={4}
           returnKeyType="done"
-          blurOnSubmit
           onSubmitEditing={Keyboard.dismiss}
           style={[styles.input, styles.multilineInput]}
         />
